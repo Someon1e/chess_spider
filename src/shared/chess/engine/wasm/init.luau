@@ -7,10 +7,10 @@ local messageListener: (string) -> ...any? = print
 local rust
 rust = require(script:WaitForChild("compiled"))({
 	env = {
-		func_list = {
-			time = os.clock,
-			print_string = function(pointer, length)
-				messageListener(rust.rt.load.string(rust.memory_list.memory, pointer, length))
+		time = { os.clock },
+		print_string = {
+			function(_, pointer, length)
+				messageListener(buffer.readstring(rust.memory[1], pointer, length))
 			end,
 		},
 	},
@@ -19,9 +19,9 @@ rust = require(script:WaitForChild("compiled"))({
 function WASM.sendInput(input)
 	for i = 1, #input do
 		local character = string.byte(input, i, i)
-		rust.func_list.send_input(character)
+		rust.send_input[1](rust.send_input, character)
 	end
-	rust.func_list.send_input(string.byte("\n"))
+	rust.send_input[1](rust.send_input, string.byte("\n"))
 end
 
 function WASM.setListener(newMessageListener)

@@ -34,13 +34,14 @@ jobs:
           cd encrustant/encrustant/target/wasm32-unknown-unknown/release/
           wasm-opt -O4 encrustant.wasm -o encrustant-opt.wasm
 
-      - name: Install Wasynth (wasm2luau)
+      - name: Install Spider (wasm2luau)
         run: |
-          cargo install --git https://github.com/Rerumu/Wasynth codegen-luau
+          cargo install --branch trunk --git "https://github.com/SovereignSatellite/Spider" spider-cli
 
       - name: Convert WASM to Luau
         run: |
-          wasm2luau encrustant/encrustant/target/wasm32-unknown-unknown/release/encrustant-opt.wasm > src/shared/chess/engine/wasm/compiled.luau
+          spider-cli compile -O3 encrustant/encrustant/target/wasm32-unknown-unknown/release/encrustant-opt.wasm > src/shared/chess/engine/wasm/compiled.luau
+          echo "return function(i) rt_import_map = i return rt_export_map, module() end" >> src/shared/chess/engine/wasm/compiled.luau
 
       - name: Commit and Push Changes
         run: |

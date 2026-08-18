@@ -1,5 +1,5 @@
-# chess_wasynth
-[Chess engine written in Rust](https://github.com/Someon1e/encrustant), compiled to WebAssembly, [then into Luau](https://github.com/Rerumu/Wasynth).
+# chess_spider
+[Chess engine written in Rust](https://github.com/Someon1e/encrustant), compiled to WebAssembly, [then into Luau](https://github.com/SovereignSatellite/Spider).
 
 Demo: https://streamable.com/4zen8i
 
@@ -7,10 +7,10 @@ Demo: https://streamable.com/4zen8i
 To build the place from scratch, use:
 
 ```bash
-rojo build -o "chess_wasynth.rbxlx"
+rojo build -o "chess_spider.rbxlx"
 ```
 
-Next, open `chess_wasynth.rbxlx` in Roblox Studio and start the Rojo server:
+Next, open `chess_spider.rbxlx` in Roblox Studio and start the Rojo server:
 
 ```bash
 rojo serve
